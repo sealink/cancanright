@@ -55,7 +55,7 @@ module CanCanRight
     end
 
     def subject
-      @right.controller + '#' + (@right.action || '*')
+      [@right.controller, @right.action].compact.join('#')
     end
 
     def conditions
