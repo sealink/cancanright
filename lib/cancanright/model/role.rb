@@ -1,7 +1,7 @@
 module CanCanRight
   module Model
     class Role < ActiveRecord::Base
-      has_and_belongs_to_many :rights, :class_name => 'RightOn::Right'
+      has_and_belongs_to_many :rights, :class_name => 'CanCanRight::Model::Right'
 
       validates :title, presence: true, uniqueness: true
 
