@@ -1,4 +1,5 @@
 require 'cancanright/model/right'
 require 'cancanright/model/role'
+require 'cancanright/controller_additions'
 require 'cancanright/error'
 require 'cancanright/rule'
