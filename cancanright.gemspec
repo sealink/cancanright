@@ -4,7 +4,7 @@ require 'cancanright/version'
 
 Gem::Specification.new do |s|
   s.name        = 'cancanright'
-  s.version     = CanCanRight::Version
+  s.version     = CanCanRight::VERSION
   s.date        = '2016-11-22'
   s.authors     = ['Grant Colegate']
   s.email       = ['blaknite@thelanbox.com.au']
