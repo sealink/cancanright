@@ -79,7 +79,7 @@ module CanCanRight
     end
 
     def action
-      @right.title.parameterize('_').to_sym
+      @right.name.parameterize('_').to_sym
     end
 
     def subject
