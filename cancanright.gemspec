@@ -3,7 +3,7 @@ $:.push File.expand_path('../lib', __FILE__)
 require 'cancanright/version'
 
 Gem::Specification.new do |s|
-  s.name        = 'blush'
+  s.name        = 'cancanright'
   s.version     = CanCanRight::Version
   s.date        = '2016-11-22'
   s.authors     = ['Grant Colegate']
