@@ -1,7 +1,7 @@
 module CanCanRight
   class Rule
     def self.rule_for(right)
-      (right.controller.present? ? ControllerRightRule : DefaultRightRule).new(right).call
+      (right.controller.present? ? ControllerRule : StandardRule).new(right).call
     end
 
     def initialize(right)
@@ -63,7 +63,7 @@ module CanCanRight
     end
   end
 
-  class DefaultRule < Rule
+  class StandardRule < Rule
     def initialize(right)
       @right = right
     end
