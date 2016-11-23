@@ -51,7 +51,7 @@ module CanCanRight
     end
 
     def action
-      :perform
+      :access
     end
 
     def subject
