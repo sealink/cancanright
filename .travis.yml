@@ -1,0 +1,11 @@
+language: ruby
+rvm:
+  - 2.3.1
+script: "bundle exec rake spec"
+gemfile:
+  - Gemfile
+notifications:
+  email:
+    - support@travellink.com.au
+sudo: false
+cache: bundler
