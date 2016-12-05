@@ -69,7 +69,11 @@ module CanCanRight
     end
 
     def call
-      CanCan::Rule.new(can?, action, subject, conditions, nil)
+      if @right.name.present?
+        CanCan::Rule.new(can?, action, subject, conditions, nil)
+      else
+        fail CanCanRight::Error, 'must specify a name'
+      end
     end
 
     private
