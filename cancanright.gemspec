@@ -15,5 +15,9 @@ Gem::Specification.new do |s|
   s.files = Dir['lib/**/*', 'LICENSE', 'README.md']
 
   s.add_dependency 'rails'
-  s.add_dependency 'cancancan'
+  s.add_dependency 'cancancan', '~> 1.15.0'
+
+  s.add_development_dependency 'bundler', '~> 1.12.5'
+  s.add_development_dependency 'rake', '~> 11.3.0'
+  s.add_development_dependency 'rspec', '~> 3.5.0'
 end
