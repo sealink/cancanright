@@ -7,7 +7,7 @@ Gem::Specification.new do |s|
   s.version     = CanCanRight::VERSION
   s.date        = '2016-11-22'
   s.authors     = ['Grant Colegate']
-  s.email       = ['blaknite@thelanbox.com.au']
+  s.email       = ['support@travellink.com.au']
   s.homepage    = ''
   s.summary     = 'Database driven rules for CanCan'
   s.description = 'Database driven rules for CanCan'
