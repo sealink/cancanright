@@ -22,4 +22,5 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'rspec', '~> 3.5.0'
   s.add_development_dependency 'coverage-kit', '~> 0.1'
   s.add_development_dependency 'simplecov-rcov', '~> 0.2'
+  s.add_development_dependency 'coveralls', '~> 0.8'
 end
