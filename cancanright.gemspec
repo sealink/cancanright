@@ -17,7 +17,9 @@ Gem::Specification.new do |s|
   s.add_dependency 'rails'
   s.add_dependency 'cancancan', '~> 1.15.0'
 
-  s.add_development_dependency 'bundler', '~> 1.12.5'
+  s.add_development_dependency 'bundler', '>= 1.12.5'
   s.add_development_dependency 'rake', '~> 11.3.0'
   s.add_development_dependency 'rspec', '~> 3.5.0'
+  s.add_development_dependency 'coverage-kit', '~> 0.1'
+  s.add_development_dependency 'simplecov-rcov', '~> 0.2'
 end
