@@ -3,6 +3,8 @@ module CanCanRight
     class Right < ActiveRecord::Base
       has_and_belongs_to_many :roles, :class_name => 'CanCan::Model::Role'
 
+      validates :action, presence: true
+      validates :can, presence: true
       validates :name, presence: true, uniqueness: true
 
       scope :ordered, -> { order :name }

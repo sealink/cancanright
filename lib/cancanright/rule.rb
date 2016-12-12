@@ -1,7 +1,7 @@
 module CanCanRight
   class Rule
     def self.rule_for(right)
-      (right.controller.present? ? ControllerRule : StandardRule).new(right).call
+      self.new(right).call
     end
 
     def initialize(right)
@@ -9,89 +9,41 @@ module CanCanRight
     end
 
     def call
-      fail NotImplementedError, 'must be implemented in sub-class'
+      validate!
+
+      CanCan::Rule.new(can?, action, subject, conditions, nil)
     end
 
     private
 
+    def validate!
+      fail CanCanRight::Error, 'must specify an action' unless @right.action.present?
+    end
+
     def can?
-      true
+      @right.can
     end
 
     def action
-      :access
+      @right.action.to_sym
     end
 
     def subject
-      [@right.controller, @right.action].compact.join('#')
+      model_class || @right.subject
     end
 
     def conditions
-      nil
-    end
-  end
-
-  class ControllerRule < Rule
-    def initialize(right)
-      @right = right
+      model_class ? @right.conditions : nil
     end
 
-    def call
-      if @right.controller.present?
-        CanCan::Rule.new(can?, action, subject, conditions, nil)
-      else
-        fail CanCanRight::Error, 'must specify controller'
+    def model_class
+      begin
+        model_class = self.class.const_get(@right.subject)
+      rescue NameError
+        model_class = Class
       end
-    end
 
-    private
-
-    def can?
-      true
-    end
-
-    def action
-      :access
-    end
-
-    def subject
-      [@right.controller, @right.action].compact.join('#')
-    end
-
-    def conditions
-      nil
-    end
-  end
-
-  class StandardRule < Rule
-    def initialize(right)
-      @right = right
-    end
-
-    def call
-      if @right.name.present?
-        CanCan::Rule.new(can?, action, subject, conditions, nil)
-      else
-        fail CanCanRight::Error, 'must specify a name'
-      end
-    end
-
-    private
-
-    def can?
-      true
-    end
-
-    def action
-      @right.name.parameterize('_').to_sym
-    end
-
-    def subject
-      nil
-    end
-
-    def conditions
-      nil
+      return model_class if model_class.ancestors.include?(ActiveRecord::Base)
     end
   end
 end

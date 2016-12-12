@@ -48,7 +48,7 @@ describe 'CanCanRight::ControllerAdditions' do
   describe 'private #authorize_action!' do
     context 'when the ability has a matching rule' do
       let(:right) {
-        double(name: 'controller#action', controller: 'controller', action: 'action')
+        double(name: 'Do Something', can: true, action: 'access', subject: 'controller#action', conditions: {})
       }
 
       before do
@@ -63,7 +63,7 @@ describe 'CanCanRight::ControllerAdditions' do
 
     context 'when the ability does not have a matching rule' do
       let(:right) {
-        double(name: 'controller#no_action', controller: 'controller', action: 'no_action')
+        double(name: 'Do Something', can: true, action: 'access', subject: 'controller#other_action', conditions: {})
       }
 
       before do

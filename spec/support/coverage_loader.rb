@@ -1,4 +1,4 @@
 require 'simplecov-rcov'
 require 'coveralls'
 require 'coverage/kit'
-Coverage::Kit.setup(minimum_coverage: 88.71)
+Coverage::Kit.setup(minimum_coverage: 95.2)
