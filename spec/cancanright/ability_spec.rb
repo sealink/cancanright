@@ -15,7 +15,7 @@ describe 'CanCanRight::Ability' do
       TestAbility.new
     }
     let(:right) {
-      double(name: 'controller#action', controller: 'controller', action: 'action')
+      double(name: 'Do Something', can: true, action: 'action', subject: 'subject', conditions: {})
     }
 
     before do
