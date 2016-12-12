@@ -41,7 +41,7 @@ class Ability
     #     add_rule_for(right)
     #   end
     #
-    # Further abilities to extend or override and be defined as usual.
+    # Further abilities to extend or override can be defined as usual.
     end
   end
 end
