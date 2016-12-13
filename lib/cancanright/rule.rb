@@ -37,6 +37,8 @@ module CanCanRight
     end
 
     def model_class
+      return nil unless @right.subject.present?
+
       begin
         model_class = self.class.const_get(@right.subject)
       rescue NameError
