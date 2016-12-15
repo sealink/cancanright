@@ -1,4 +1,5 @@
 require 'active_support/all'
+require 'action_controller'
 require 'cancan/ability'
 require 'cancan/controller_additions'
 require 'cancan/exceptions'
@@ -19,10 +20,7 @@ describe 'CanCanRight::ControllerAdditions' do
       end
     end
 
-    class Controller
-      include CanCan::ControllerAdditions
-      include CanCanRight::ControllerAdditions
-
+    class Controller < ActionController::Base
       def rights_from
         nil
       end
