@@ -12,7 +12,7 @@ Gem::Specification.new do |s|
   s.summary     = 'Database driven rules for CanCan'
   s.description = 'Database driven rules for CanCan'
 
-  s.files = Dir['lib/**/*', 'LICENSE', 'README.md']
+  s.files = Dir['lib/**/*', 'LICENSE', 'README.md', 'CHANGELOG.md']
 
   s.add_dependency 'rails'
   s.add_dependency 'cancancan', '~> 1.15.0'
