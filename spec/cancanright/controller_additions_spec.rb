@@ -8,6 +8,7 @@ require 'cancanright/ability'
 require 'cancanright/controller_additions'
 require 'cancanright/error'
 require 'cancanright/rule'
+require 'active_record'
 require 'spec_helper'
 
 describe 'CanCanRight::ControllerAdditions' do
