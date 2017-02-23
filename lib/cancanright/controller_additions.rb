@@ -1,8 +1,8 @@
 module CanCanRight
   module ControllerAdditions
     def authorize_action!
-      controller = self.rights_from || params[:controller]
-      action = params[:action]
+      controller = (self.rights_from || params[:controller]).to_s
+      action = params[:action].to_s
 
       return if can?(:access, controller) || can?(:access, controller + '#' + action)
 

@@ -8,6 +8,7 @@ require 'cancanright/ability'
 require 'cancanright/controller_additions'
 require 'cancanright/error'
 require 'cancanright/rule'
+require 'active_record'
 require 'spec_helper'
 
 describe 'CanCanRight::ControllerAdditions' do
@@ -69,6 +70,35 @@ describe 'CanCanRight::ControllerAdditions' do
       end
 
       it 'should grant access to controller#action' do
+        expect{controller.send(:authorize_action!)}.to(
+          raise_error(CanCan::AccessDenied, 'You are not authorized to access this page.'))
+      end
+    end
+  end
+
+  describe 'private #authorize_action!' do
+    let(:controller) {
+      class Controller < ActionController::Base
+        def rights_from
+          :other_controller
+        end
+
+        private
+
+        def params
+          { controller: 'controller', action: 'action' }
+        end
+
+        def current_user
+          nil
+        end
+      end
+
+      Controller.new
+    }
+
+    context 'when rights from is a symbol' do
+      specify do
         expect{controller.send(:authorize_action!)}.to(
           raise_error(CanCan::AccessDenied, 'You are not authorized to access this page.'))
       end
