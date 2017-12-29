@@ -4,9 +4,14 @@ module CanCanRight
       controller = (self.rights_from || params[:controller]).to_s
       action = params[:action].to_s
 
-      return if can?(:access, controller) || can?(:access, controller + '#' + action)
+      return if can_access_controller_action?(controller, action)
 
       fail CanCan::AccessDenied, "You are not authorized to access this page."
+    end
+
+    def can_access_controller_action?(controller, action)
+      (can?(:access, controller) && !Model::Right.where(subject: controller + '#' + action).exists?) ||
+        can?(:access, controller + '#' + action)
     end
   end
 end
