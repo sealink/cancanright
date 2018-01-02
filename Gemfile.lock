@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    cancanright (0.0.2)
+    cancanright (0.0.3)
       cancancan (~> 1.15.0)
       rails
 
@@ -74,7 +74,7 @@ GEM
     method_source (0.9.0)
     mini_mime (1.0.0)
     mini_portile2 (2.3.0)
-    minitest (5.10.3)
+    minitest (5.11.0)
     nio4r (2.2.0)
     nokogiri (1.8.1)
       mini_portile2 (~> 2.3.0)
@@ -156,4 +156,4 @@ DEPENDENCIES
   simplecov-rcov (~> 0.2)
 
 BUNDLED WITH
-   1.15.4
+   1.16.1
