@@ -11,7 +11,21 @@ require 'cancanright/rule'
 require 'active_record'
 require 'spec_helper'
 
+# Mock this so we don't need to include active record
+module CanCanRight::Model
+  class Right
+    def self.where(args)
+    end
+  end
+end
+
 describe 'CanCanRight::ControllerAdditions' do
+  let(:rule_override) { false }
+  before do
+    rule_class = class_double('CanCanRight::ControllerAdditions::Model')
+    allow(CanCanRight::Model::Right).to receive(:where).and_return(double(exists?: rule_override))
+  end
+
   subject(:controller) {
     class Ability
       include CanCanRight::Ability
@@ -70,6 +84,22 @@ describe 'CanCanRight::ControllerAdditions' do
       end
 
       it 'should grant access to controller#action' do
+        expect{controller.send(:authorize_action!)}.to(
+          raise_error(CanCan::AccessDenied, 'You are not authorized to access this page.'))
+      end
+    end
+
+    context 'when the ability has a specific rule overriding the general rule' do
+      let(:rule_override) { true }
+      let(:right) {
+        double(name: 'Generic', can: true, action: 'access', subject: 'controller', conditions: {})
+      }
+
+      before do
+        controller.send(:current_ability).send(:add_rule_for, right)
+      end
+
+      it 'should not grant access to controller#action' do
         expect{controller.send(:authorize_action!)}.to(
           raise_error(CanCan::AccessDenied, 'You are not authorized to access this page.'))
       end
